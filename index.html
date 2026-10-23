@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>日本大分・別府溫泉秋日自駕漫遊手冊｜2026</title>
+
+<!-- Web Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+
+<!-- Leaflet Map CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<!-- Custom Stylesheet -->
+<link rel="stylesheet" href="style.css">
+
+<!-- Leaflet Map JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+
+<body>
+
+<!-- 行動導航 Tab Bar -->
+<nav class="tabbar" id="nav"></nav>
+
+<!-- 封面區塊 -->
+<section class="cover" id="cover"></section>
+
+<!-- 內容主容器 -->
+<div class="container">
+    <!-- 互動地圖 -->
+    <section class="scroll-target" id="map-section"></section>
+
+    <!-- 每日行程 -->
+    <section class="scroll-target" id="itinerary"></section>
+
+    <!-- 航班資訊 -->
+    <section class="scroll-target" id="flights"></section>
+
+    <!-- 交通與租車 -->
+    <section class="scroll-target" id="transport"></section>
+
+    <!-- 住宿飯店與泡湯須知 -->
+    <section class="scroll-target" id="hotels"></section>
+
+    <!-- 特色美食指南 -->
+    <section class="scroll-target" id="food"></section>
+
+    <!-- 費用拆帳與記帳 -->
+    <section class="scroll-target" id="expenses"></section>
+
+    <!-- 重要提醒與行李指南 -->
+    <section class="scroll-target" id="tips"></section>
+</div>
+
+<!-- 頁尾 -->
+<footer class="footer">
+    <p>♨️ 2026 日本大分・別府・日田・由布院 秋日溫泉之旅</p>
+    <p class="sub-credit">祝旅途平安順心・泡湯療癒・美食滿腹 ✨</p>
+</footer>
+
+<!-- 引入資料與核心渲染邏輯 -->
+<script src="data.js"></script>
+<script src="render.js"></script>
+
+</body>
+</html>

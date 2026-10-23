@@ -1,0 +1,960 @@
+:root {
+    --onsen-dark: #1E3A4C;
+    --onsen-blue: #2A607D;
+    --autumn-red: #B83B26;
+    --autumn-amber: #D97724;
+    --matcha-green: #3A6B4C;
+    --cream-bg: #FAF7F2;
+    --paper-card: #FFFFFF;
+    --text-primary: #2C2825;
+    --text-secondary: #6B645D;
+    --text-muted: #9E968F;
+    --border-soft: #EAE4DA;
+    --border-accent: #E2D7C5;
+    --badge-gold: #E67E22;
+    --tape-color: rgba(235, 222, 203, 0.85);
+
+    --nav-height: 64px;
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --shadow-soft: 0 4px 18px rgba(30, 25, 20, 0.06);
+    --shadow-card: 0 6px 24px rgba(30, 25, 20, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    font-family:
+        "Noto Sans TC",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        "PingFang TC",
+        "Microsoft JhengHei",
+        sans-serif;
+    background: linear-gradient(180deg, var(--cream-bg) 0%, #FFFFFF 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding-bottom: calc(var(--nav-height) + 24px + env(safe-area-inset-bottom));
+}
+
+h1, h2, h3, h4, .stamp, .brand-font {
+    font-family: "Klee One", "Noto Sans TC", sans-serif;
+    letter-spacing: 0.03em;
+}
+
+a {
+    color: var(--onsen-blue);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--autumn-red);
+}
+
+/* ===== 底部行動導航 Tab Bar ===== */
+.tabbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    display: flex;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border-soft);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
+    padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.tabbar::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-item {
+    flex: 1;
+    min-width: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 6px 2px;
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-item .nav-icon {
+    font-size: 19px;
+    line-height: 1.1;
+}
+
+.nav-item.active {
+    color: var(--autumn-red);
+    background: rgba(184, 59, 38, 0.08);
+    transform: translateY(-2px);
+    font-weight: 700;
+}
+
+/* ===== 封面 Hero ===== */
+.cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 16px 24px;
+    background:
+        radial-gradient(circle at 10% 20%, rgba(217, 119, 36, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(42, 96, 125, 0.08) 0%, transparent 40%);
+}
+
+.cover-box {
+    max-width: 680px;
+    width: 100%;
+    background: var(--paper-card);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 32px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cover-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 20%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--autumn-amber), var(--autumn-red), var(--onsen-blue));
+    border-radius: 2px;
+}
+
+.cover .illustration {
+    font-size: 48px;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.08));
+}
+
+.cover h1 {
+    font-size: 26px;
+    margin: 8px 0 6px;
+    color: var(--onsen-dark);
+    font-weight: 600;
+}
+
+.cover h2 {
+    font-size: 16px;
+    color: var(--autumn-red);
+    margin: 0 0 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.cover p {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    margin: 6px 0 18px;
+    line-height: 1.5;
+}
+
+.cover .stamp {
+    display: inline-block;
+    padding: 4px 16px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--autumn-amber);
+    border: 1.5px dashed var(--autumn-amber);
+    border-radius: 30px;
+    background: rgba(217, 119, 36, 0.04);
+}
+
+/* ===== 主容器與區塊標題 ===== */
+.container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.scroll-target {
+    scroll-margin-top: 24px;
+    margin-bottom: 32px;
+}
+
+.section-title {
+    font-size: 20px;
+    color: var(--onsen-dark);
+    margin: 0 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 2px solid var(--border-soft);
+    padding-bottom: 8px;
+}
+
+.section-title .sub-tag {
+    font-size: 12px;
+    font-weight: normal;
+    color: var(--text-muted);
+    margin-left: auto;
+}
+
+/* ===== 通用卡片 ===== */
+.card {
+    background: var(--paper-card);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+    padding: 20px;
+    margin-bottom: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-card);
+}
+
+.card h3 {
+    margin: 0 0 12px;
+    font-size: 17px;
+    color: var(--onsen-dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ===== 資訊網格 ===== */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    margin: 12px 0;
+    background: var(--cream-bg);
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-soft);
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.info-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.info-value {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.route-line {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--onsen-dark);
+    margin: 8px 0;
+}
+
+.route-line .arrow {
+    color: var(--autumn-amber);
+    font-size: 18px;
+}
+
+/* ===== 航班資訊 ===== */
+.flight-leg {
+    padding: 8px 0;
+}
+
+.flight-leg hr {
+    border: none;
+    border-top: 1px dashed var(--border-soft);
+    margin: 16px 0;
+}
+
+.flight-transit-box {
+    margin-top: 14px;
+    background: #FFF9E6;
+    border-left: 4px solid var(--autumn-amber);
+    border-radius: 4px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #7A5300;
+    line-height: 1.5;
+}
+
+/* ===== 飯店資訊 ===== */
+.hotel-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.hotel-tag-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    font-size: 11px;
+    border-radius: 20px;
+    background: rgba(42, 96, 125, 0.1);
+    color: var(--onsen-blue);
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.hotel-bill-badge {
+    background: #FDF2E9;
+    border: 1px solid #F5CBA7;
+    color: #A04000;
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin: 8px 0;
+}
+
+/* 特別警告提示框 (大分 Blossom 浴巾衣泡湯) */
+.special-alert-box {
+    background: #FDEDEC;
+    border-left: 4px solid var(--autumn-red);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    margin: 14px 0 10px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #78281F;
+}
+
+.special-alert-box .alert-title {
+    font-weight: 700;
+    font-size: 13.5px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.special-notice-box {
+    background: #EBF5FB;
+    border-left: 4px solid var(--onsen-blue);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    margin: 10px 0;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: #1B4F72;
+}
+
+/* ===== 租車與交通卡片 ===== */
+.transport-card {
+    position: relative;
+}
+
+.transport-leg {
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border-soft);
+}
+
+.transport-leg:last-child {
+    border-bottom: none;
+}
+
+.transport-label {
+    font-weight: 700;
+    color: var(--onsen-blue);
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+/* ===== 每日行程 (Stepper Timeline) ===== */
+.itinerary-day {
+    position: relative;
+    padding: 20px 18px;
+}
+
+.day-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--cream-bg);
+}
+
+.day-header h3 {
+    margin: 0;
+    font-size: 17px;
+    color: var(--onsen-dark);
+}
+
+.day-weather-badge {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.stepper {
+    position: relative;
+    padding-left: 4px;
+}
+
+.step {
+    display: flex;
+    gap: 14px;
+    position: relative;
+    padding-bottom: 22px;
+}
+
+.step:last-child {
+    padding-bottom: 6px;
+}
+
+.step-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.step-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    border: 3px solid var(--autumn-amber);
+    margin-top: 4px;
+    z-index: 2;
+    transition: transform 0.2s;
+}
+
+.step:hover .step-dot {
+    transform: scale(1.25);
+    border-color: var(--autumn-red);
+}
+
+.step-line {
+    width: 2px;
+    flex: 1;
+    background: var(--border-accent);
+    margin-top: 2px;
+}
+
+.step:last-child .step-line {
+    display: none;
+}
+
+.step-body {
+    flex: 1;
+    background: #FFFFFF;
+}
+
+.step-time {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--autumn-amber);
+    margin-bottom: 2px;
+}
+
+.step-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.step-badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.badge-spot {
+    background: rgba(42, 96, 125, 0.1);
+    color: var(--onsen-blue);
+}
+
+.badge-food {
+    background: rgba(184, 59, 38, 0.1);
+    color: var(--autumn-red);
+}
+
+.badge-star {
+    background: #FEF9E7;
+    color: #B7950B;
+    border: 1px solid #F9E79F;
+}
+
+.badge-car {
+    background: #EAFAF1;
+    color: #1E8449;
+}
+
+.badge-shop {
+    background: #F4ECF7;
+    color: #7D3C98;
+}
+
+.step-detail {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin: 4px 0;
+}
+
+.step-food {
+    font-size: 13px;
+    color: var(--autumn-red);
+    background: #FFF5F2;
+    border-radius: 6px;
+    padding: 4px 10px;
+    margin: 6px 0;
+    display: inline-block;
+}
+
+.step-links-row {
+    margin-top: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.map-btn, .step-map {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--onsen-blue);
+    background: var(--cream-bg);
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border-soft);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.map-btn:hover, .step-map:hover {
+    background: var(--onsen-blue);
+    color: #FFFFFF;
+    border-color: var(--onsen-blue);
+}
+
+.blog-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: #78281F;
+    background: #FDF2E9;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid #EDBB99;
+    font-weight: 500;
+}
+
+.blog-link:hover {
+    background: var(--autumn-amber);
+    color: #FFFFFF;
+}
+
+/* ===== 互動地圖區塊 ===== */
+.map-section-card {
+    padding: 16px;
+}
+
+.map-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.map-sidebar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    background: var(--cream-bg);
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-soft);
+}
+
+.map-filter-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-right: 4px;
+}
+
+.filter-btn {
+    border: 1px solid var(--border-soft);
+    background: #FFFFFF;
+    color: var(--text-secondary);
+    padding: 5px 10px;
+    border-radius: 16px;
+    font-size: 11.5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+    border-color: var(--onsen-blue);
+    color: var(--onsen-blue);
+}
+
+.filter-btn.active {
+    background: var(--onsen-blue);
+    color: #FFFFFF;
+    border-color: var(--onsen-blue);
+    font-weight: 600;
+}
+
+.recenter-btn {
+    margin-left: auto;
+    border: 1px solid var(--autumn-amber);
+    background: #FFF8EE;
+    color: var(--autumn-amber);
+    padding: 5px 10px;
+    border-radius: 16px;
+    font-size: 11.5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.recenter-btn:hover {
+    background: var(--autumn-amber);
+    color: #FFFFFF;
+}
+
+#oita-map {
+    height: 380px;
+    width: 100%;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-soft);
+    z-index: 10;
+}
+
+/* Leaflet 自訂 Marker 圖示 */
+.custom-pin {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+    border: 2px solid #FFFFFF;
+    transition: transform 0.2s;
+}
+
+.pin-hotel {
+    background: #F39C12;
+}
+
+.pin-restaurant {
+    background: #E74C3C;
+}
+
+.pin-spot {
+    background: #27AE60;
+}
+
+.pin-market {
+    background: #8E44AD;
+}
+
+.pin-transport {
+    background: #2980B9;
+}
+
+.pin-other {
+    background: #7F8C8D;
+}
+
+.custom-pin:hover {
+    transform: scale(1.2);
+}
+
+/* Popup 彈窗美化 */
+.leaflet-popup-content-wrapper {
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-card);
+    padding: 4px;
+}
+
+.popup-card {
+    padding: 6px 8px;
+    max-width: 240px;
+    font-size: 12.5px;
+    line-height: 1.5;
+}
+
+.popup-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--onsen-dark);
+    margin-bottom: 4px;
+}
+
+.popup-badge {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-size: 10.5px;
+    color: #FFFFFF;
+    margin-bottom: 6px;
+}
+
+.cat-hotel { background: #F39C12; }
+.cat-restaurant { background: #E74C3C; }
+.cat-spot { background: #27AE60; }
+.cat-market { background: #8E44AD; }
+.cat-transport { background: #2980B9; }
+.cat-other { background: #7F8C8D; }
+
+.popup-specialty {
+    font-size: 12px;
+    color: var(--autumn-red);
+    margin: 4px 0;
+}
+
+.popup-note {
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    margin: 4px 0 8px;
+}
+
+.popup-btn {
+    display: inline-block;
+    padding: 4px 8px;
+    background: var(--onsen-blue);
+    color: #FFFFFF;
+    border-radius: 4px;
+    font-size: 11px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* ===== 美食專區 ===== */
+.food-category-block {
+    margin-bottom: 24px;
+}
+
+.food-category-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--onsen-dark);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-left: 3px solid var(--autumn-red);
+    padding-left: 8px;
+}
+
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+}
+
+.food-item-card {
+    background: var(--cream-bg);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.food-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.food-name {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--onsen-dark);
+}
+
+.food-tag {
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    background: rgba(184, 59, 38, 0.1);
+    color: var(--autumn-red);
+    font-weight: 600;
+}
+
+.food-specialty {
+    font-size: 13px;
+    color: var(--text-primary);
+    margin: 4px 0;
+    line-height: 1.45;
+}
+
+.food-note {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin: 4px 0;
+}
+
+.food-footer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ===== 記帳與費用卡片 ===== */
+.expense-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 13.5px;
+}
+
+.expense-table th {
+    background: var(--cream-bg);
+    color: var(--onsen-dark);
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-soft);
+}
+
+.expense-table td {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.expense-total {
+    background: #FFFDF9;
+    font-weight: 700;
+    color: var(--autumn-red);
+}
+
+/* ===== 行李與叮嚀 Checklist ===== */
+.checklist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+}
+
+.check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.check-item .icon {
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+/* ===== Google Sheets 即時同步狀態條 ===== */
+.sync-status {
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sync-status.live {
+    background: #EAF2F8;
+    color: #1A5276;
+    border: 1px solid #A9CCE3;
+}
+
+/* ===== 頁尾 ===== */
+.footer {
+    text-align: center;
+    padding: 24px 16px 12px;
+    color: var(--text-muted);
+    font-size: 12px;
+    border-top: 1px solid var(--border-soft);
+    margin-top: 40px;
+}
+
+.footer .sub-credit {
+    font-size: 11px;
+    margin-top: 4px;
+    color: var(--autumn-amber);
+}
+
+/* ===== 響應式微調 (桌機版適配) ===== */
+@media (min-width: 768px) {
+    .tabbar {
+        position: sticky;
+        top: 0;
+        bottom: auto;
+        border-top: none;
+        border-bottom: 1px solid var(--border-soft);
+        padding: 8px 24px;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    body {
+        padding-bottom: 24px;
+    }
+
+    .nav-item {
+        flex: none;
+        min-width: 68px;
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .map-layout {
+        flex-direction: column;
+    }
+
+    #oita-map {
+        height: 440px;
+    }
+}
