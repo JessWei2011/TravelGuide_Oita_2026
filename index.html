@@ -127,39 +127,41 @@ a {
 .nav-links {
   display: flex;
   gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 4px;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.nav-links::-webkit-scrollbar {
-  display: none;
+  align-items: center;
 }
 
 .nav-pill {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 4px;
   background-color: var(--card-white);
   border: 2px solid var(--ink-charcoal);
   border-radius: 999px;
   padding: 6px 14px;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--ink-charcoal);
   white-space: nowrap;
   box-shadow: var(--soft-shadow-sm);
-  transition: transform 0.15s ease, background-color 0.15s ease;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.nav-pill:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0 var(--ink-charcoal);
-  background-color: var(--yamabuki-yellow);
+@media (hover: hover) {
+  .nav-pill:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0 var(--ink-charcoal);
+    background-color: var(--yamabuki-yellow);
+  }
 }
 
 .nav-pill:active {
-  transform: translate(1px, 1px);
+  transform: translate(1px, 1px) scale(0.97);
   box-shadow: 1px 1px 0 var(--ink-charcoal);
+  background-color: var(--yamabuki-yellow);
 }
 
 /* ========================================================
@@ -1046,43 +1048,62 @@ a {
    行動裝置排版深度優化 (Mobile-First Comprehensive Layout)
 ======================================================== */
 @media (max-width: 768px) {
-  /* 頂端選單兩層排版：上層品牌資訊、下層橫向滑動標籤 */
+  /* 頂端固定選單：兩層設計，絕不溢出、絕不破圖、極易點擊 */
   .navbar-wrapper {
-    padding: 8px 10px;
+    padding: 6px 8px;
   }
   .navbar-container {
     flex-direction: column;
     align-items: stretch;
-    gap: 8px;
+    gap: 6px;
   }
   .nav-brand {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    font-size: 1.05rem;
+    font-size: 0.95rem;
   }
   .nav-brand-main {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
+    font-weight: 800;
   }
   .nav-brand-tag {
-    font-size: 0.72rem;
-    padding: 2px 8px;
+    font-size: 0.7rem;
+    padding: 1px 7px;
   }
+  
+  /* 7 個功能捷徑按鈕排版：兩列 100% 完整適配排版，不溢出、不破圖、免橫向滾動 */
   .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 4px;
     width: 100%;
-    gap: 6px;
-    padding: 2px 2px 6px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    overflow: visible;
+    padding: 0;
   }
+  
+  /* 前 4 個按鈕 (首頁、航班、行程、住宿) 均分第一列 */
   .nav-pill {
-    padding: 6px 12px;
-    font-size: 0.82rem;
-    flex-shrink: 0;
-    min-height: 34px;
+    flex: 1 1 calc(25% - 4px);
+    min-width: 0;
+    max-width: calc(25% - 2px);
+    padding: 6px 2px;
+    font-size: 0.76rem;
+    font-weight: 800;
+    border-radius: 8px;
+    border-width: 2px;
+    box-shadow: 1.5px 1.5px 0 var(--ink-charcoal);
+    gap: 3px;
+  }
+  
+  /* 後 3 個按鈕 (租車、待辦、Notion) 均分第二列 */
+  .nav-pill:nth-child(n+5) {
+    flex: 1 1 calc(33.33% - 4px);
+    max-width: calc(33.33% - 2px);
   }
 
   /* 主容器邊距大幅精簡，確保內容享有完整視窗寬度 */
@@ -1440,13 +1461,13 @@ a {
       <span class="nav-brand-tag">2026.10.31-11.04</span>
     </div>
     <nav class="nav-links">
-      <a href="#hero" class="nav-pill">🏠 首頁</a>
-      <a href="#flights" class="nav-pill">✈️ 航班</a>
-      <a href="#itinerary" class="nav-pill">📅 行程</a>
-      <a href="#hotels" class="nav-pill">🏨 住宿</a>
-      <a href="#rental" class="nav-pill">🚗 租車</a>
-      <a href="#checklist" class="nav-pill">✅ 待辦</a>
-      <a href="#notion-guide" class="nav-pill">📝 Notion</a>
+      <a href="#hero" class="nav-pill" onclick="goToSection(event, 'hero')"><span>🏠</span><span>首頁</span></a>
+      <a href="#flights" class="nav-pill" onclick="goToSection(event, 'flights')"><span>✈️</span><span>航班</span></a>
+      <a href="#itinerary" class="nav-pill" onclick="goToSection(event, 'itinerary')"><span>📅</span><span>行程</span></a>
+      <a href="#hotels" class="nav-pill" onclick="goToSection(event, 'hotels')"><span>🏨</span><span>住宿</span></a>
+      <a href="#rental" class="nav-pill" onclick="goToSection(event, 'rental')"><span>🚗</span><span>租車</span></a>
+      <a href="#checklist" class="nav-pill" onclick="goToSection(event, 'checklist')"><span>✅</span><span>待辦</span></a>
+      <a href="#notion-guide" class="nav-pill" onclick="goToSection(event, 'notion-guide')"><span>📝</span><span>Notion</span></a>
     </nav>
   </div>
 </header>
@@ -2752,7 +2773,26 @@ function renderTodos() {
 loadTodos();
 
 /* ========================================================
-   4. 一鍵複製 Notion Markdown 行程文字
+   4. 頂端導航捷徑平滑滾動（相容手機觸控與動態選單高度）
+======================================================== */
+function goToSection(e, id) {
+  if (e && e.preventDefault) {
+    e.preventDefault();
+  }
+  const target = document.getElementById(id);
+  if (target) {
+    const header = document.querySelector('.navbar-wrapper');
+    const headerHeight = header ? header.getBoundingClientRect().height : 85;
+    const targetY = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 12;
+    window.scrollTo({
+      top: Math.max(0, targetY),
+      behavior: 'smooth'
+    });
+  }
+}
+
+/* ========================================================
+   5. 一鍵複製 Notion Markdown 行程文字
 ======================================================== */
 function copyNotionMarkdown() {
   const notionText = `# ♨️ 日本大分・別府溫泉五日秋日漫遊手冊 (2026.10.31 - 11.04)
